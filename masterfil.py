@@ -1,6 +1,6 @@
 import oppgave1 as o1
 import oppgave2 as o2
-import Oppgave3 as o3
+import oppgave3 as o3
 
 def printOptions():
 	outStr = "\n1) Oppgave 1"
