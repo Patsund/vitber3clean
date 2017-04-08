@@ -145,7 +145,7 @@ def task1a(savefig=False):
         X=[100,0]
         h=100
         errorAndTrajectoryForEuler(X,h,"1ahlik100.pdf")
-        times=np.logspace(2,4,10)
+        times=np.logspace(1,4,10)
         errorArr=[]
         for h in times:
             X=[100,0]
@@ -159,7 +159,7 @@ def task1a(savefig=False):
         X=[100,0]
         h=100
         errorAndTrajectoryForEuler(X,h,"dummy")
-        times=np.logspace(2,4,10)
+        times=np.logspace(1,4,10)
         errorArr=[]
         for h in times:
             X=[100,0]
@@ -190,7 +190,7 @@ def task1b(savefig=False):
         X=[100,0]
         h=100
         errorAndTrajectoryForRK2(X,h,"1ahlik100.pdf")
-        times=np.logspace(2,4,10)
+        times=np.logspace(1,4,10)
         errorArr1=[]
         errorArr2=[]
         for h in times:
@@ -199,17 +199,17 @@ def task1b(savefig=False):
             errorArr2.append(errorAndTrajectoryForEuler(X,h,"errorOnly"))
         plt.figure("1berror")
         plt.title("Error for Euler and trapezoid with biggest error smaller than 10 marked with a line")
-        plt.loglog(times,errorArr1,"bo",label="Trapezoid")
-        plt.loglog(times,errorArr2,"ro",label="Euler")
+        plt.loglog(times,errorArr1,"bo")
+        plt.loglog(times,errorArr2,"ro")
         plt.axvline(x=timestepEuler, color="r")
         plt.axvline(x=timestepTrap, color="b")
-        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+        #plt.legend(bbox_to_anchor=(0., 1.1, 1., .052), loc="best", ncol=2, mode="expand", borderaxespad=0.)
         plt.savefig("Oppgave1pdfer\opg1berror.pdf")
     else:
         X=[100,0]
         h=100
         errorAndTrajectoryForRK2(X,h,"dummy")
-        times=np.logspace(2,4,10)
+        times=np.logspace(1,4,10)
         errorArr1=[]
         errorArr2=[]
         for h in times:
@@ -218,11 +218,11 @@ def task1b(savefig=False):
             errorArr2.append(errorAndTrajectoryForEuler(X,h,"errorOnly"))
         plt.figure("1berror")
         plt.title("Error for Euler and trapezoid with biggest error smaller than 10 marked with a line")
-        plt.loglog(times,errorArr1,"bo",label="Trapezoid")
-        plt.loglog(times,errorArr2,"ro",label="Euler")
+        plt.loglog(times,errorArr1,"bo")
+        plt.loglog(times,errorArr2,"ro")
         plt.axvline(x=timestepEuler, color="r")
         plt.axvline(x=timestepTrap, color="b")
-        plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+        #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
         #plt.show()
     X=(100,0)
     n=10

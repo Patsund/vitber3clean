@@ -25,13 +25,13 @@ def oppgave3(datapath, saving=False):
         task3a(savefig=True)
         print("**Oppgave 3b**")
         task3b(savefig=True)
-        print("brukte",time.time()-opg3Time(),"sekunder på oppgave 3")
+        print("brukte",time.time()-opg3Time,"sekunder på oppgave 3")
     else:
         print("**Oppgave 3a**")
         task3a()
         print("**Oppgave 3b**")
         task3b()
-        print("brukte",time.time()-opg3Time(),"sekunder på oppgave 3")
+        print("brukte",time.time()-opg3Time,"sekunder på oppgave 3")
         plt.show()
 
 #Denne funksjonen gir oss vannhastigheten med bakgrunn i dataene
