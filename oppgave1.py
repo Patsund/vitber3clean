@@ -244,7 +244,7 @@ def task1c(savefig=False):
         L = 1.0E+02
         differentTimesteps = 10
         analyticEndpoint = np.array(analyticSolution(L, alpha, m))
-        timestepArray = np.linspace(10, 2*m/alpha -1, num=differentTimesteps)
+        timestepArray = np.logspace(2, 3, num=differentTimesteps)
         errorArray = np.zeros(differentTimesteps)
         for i in range(differentTimesteps):
             h = timestepArray[i]
@@ -268,7 +268,7 @@ def task1c(savefig=False):
                 plt.plot([analyticEndpoint[0]], [analyticEndpoint[1]], 'ko', markersize=4,label="analytisk ende")
                 plt.legend(loc="best")
         plt.figure()
-        plt.plot(timestepArray,errorArray)
+        plt.loglog(timestepArray,errorArray)
         plt.xlabel("timestep / sekunder")
         plt.ylabel("error / meter")
         plt.title("Avvik fra analytisk løsning")
@@ -277,7 +277,7 @@ def task1c(savefig=False):
         L = 1.0E+02
         differentTimesteps = 10
         analyticEndpoint = np.array(analyticSolution(L, alpha, m))
-        timestepArray = np.linspace(10, 2*m/alpha -1, num=differentTimesteps)
+        timestepArray = np.logspace(2, 3, num=differentTimesteps)
         errorArray = np.zeros(differentTimesteps)
         for i in range(differentTimesteps):
             h = timestepArray[i]
@@ -301,7 +301,7 @@ def task1c(savefig=False):
                 plt.plot([analyticEndpoint[0]], [analyticEndpoint[1]], 'ko', markersize=4, label="analytisk ende")
                 plt.legend(loc="best")
         plt.figure("1c avvik")
-        plt.plot(timestepArray,errorArray)
+        plt.loglog(timestepArray,errorArray)
         plt.xlabel("timestep / sekunder")
         plt.ylabel("error / meter")
         plt.title("Avvik fra analytisk løsning")
