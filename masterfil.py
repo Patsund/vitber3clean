@@ -2,13 +2,15 @@ import oppgave1 as o1
 import oppgave2 as o2
 import oppgave3 as o3
 
+
 def printOptions():
 	outStr = "\n1) Oppgave 1"
-	outStr+= "\n2) Oppgave 2"
-	outStr+= "\n3) Oppgave 3"
-	outStr+= "\n4) Velg mellom å vise og lagre figurer"
-	outStr+= "\n0) Avslutt"
-	outStr+= "\nDitt valg:"
+	outStr += "\n2) Oppgave 2"
+	outStr += "\n3) Oppgave 3"
+	outStr += "\n4) Alle oppgavene"
+	outStr += "\n5) Velg mellom å vise og lagre figurer"
+	outStr += "\n0) Avslutt"
+	outStr += "\nDitt valg:"
 	return outStr
 
 def printSave():
@@ -58,6 +60,16 @@ if __name__ == "__main__":
 			elif save == 2:
 				o3.oppgave3(datapath, True)
 		elif switch == 4:
+			datapath = 'C:/Users/Patrik/Downloads/NorKyst-800m.nc'
+			if save == 1:
+				o1.oppgave1()
+				o2.oppgave2(datapath)
+				o3.oppgave3(datapath)
+			elif save == 2:
+				o1.oppgave1(True)
+				o2.oppgave2(datapath, True)
+				o3.oppgave3(datapath, True)
+		elif switch == 5:
 			while(save):
 				try:
 					save = int(input(printSave()))
