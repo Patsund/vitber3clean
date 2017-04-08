@@ -113,6 +113,19 @@ def errorAndTrajectoryForEuler(X,h,figname):
     error=np.sqrt(vecError[0]**2+vecError[1]**2)#finner avstanden mellom startpunktet og sluttpunktet
     return error
 
+def errorFor1c(h,analyticEndpoint):
+    L = 1.0E+02
+    numberOfTimeSteps = int(2 * 24 * 60 * 60 / h) + 1
+    X = np.array([L, 0, 0, 0])
+    timeNow=0
+    timeFinal=48*3600
+    for j in range(numberOfTimeSteps):
+        h=min(h,timeFinal-timeNow)
+        X=rk2(X,fForEq1,h,timeNow)
+        timeNow+=h
+    error = np.linalg.norm(np.array([X[0], X[1]]) - analyticEndpoint)
+    return error
+
 def analyticSolution(L,alpha,m):
     k = alpha/m
     w = 2*np.pi/(24*60*60)*k
@@ -273,6 +286,13 @@ def task1c(savefig=False):
         plt.ylabel("error / meter")
         plt.title("Avvik fra analytisk løsning")
         plt.savefig("Oppgave1pdfer\opg1cplot.pdf")
+        h0=350#sekund
+        thiserror = errorFor1c(h0,analyticEndpoint)
+        while thiserror>10:
+            h0-=0.5
+            thiserror = errorFor1c(h0,analyticEndpoint)
+        timestep1c=h0
+        print("Det minste tidssteget som kreves for å ikke få en global feil større enn 10 m med trapesmetoden er h =",timestep1c)
     else:
         L = 1.0E+02
         differentTimesteps = 10
@@ -305,6 +325,13 @@ def task1c(savefig=False):
         plt.xlabel("timestep / sekunder")
         plt.ylabel("error / meter")
         plt.title("Avvik fra analytisk løsning")
+        h0=420#sekund
+        thiserror = errorFor1c(h0,analyticEndpoint)
+        while thiserror>10:
+            h0-=0.5
+            thiserror = errorFor1c(h0,analyticEndpoint)
+        timestep1c=h0
+        print("Det minste tidssteget som kreves for å ikke få en global feil større enn 10 m med trapesmetoden er h =",timestep1c)
         #plt.show()
 
 def task1d(savefig=False):
@@ -321,7 +348,6 @@ def task1d(savefig=False):
         deviationArray = []
         coordinateArray = []
         analyticEndpoint = analyticSolution(L, alpha, m)
-        print("Analytisk ende", analyticEndpoint)
         while (timeNow < totalTime):
             if timeNow==0:
                 h=1000
@@ -384,7 +410,6 @@ def task1d(savefig=False):
         deviationArray = []
         coordinateArray = []
         analyticEndpoint = analyticSolution(L, alpha, m)
-        print("Analytisk ende", analyticEndpoint)
         while (timeNow < totalTime):
             if timeNow==0:
                 h=1000
