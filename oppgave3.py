@@ -19,8 +19,8 @@ def oppgave3(datapath, saving=False):
     d  = xr.open_dataset(datapath)
     f  = Interpolator(dataset = d)
     if saving:
-        print("**Oppgave 3a med separate plot**")
-        task3a(separate=True, savefig=True)
+        #print("**Oppgave 3a med separate plot**")
+        #task3a(separate=True, savefig=True)
         print("**Oppgave 3a med samlet plot**")
         task3a(savefig=True)
         print("**Oppgave 3b**")
@@ -135,7 +135,7 @@ def task3a(separate=False, savefig=False):
             yArray = trajectories[1]
             plt.figure()
             ax = plt.axes(projection=ccrs.NorthPolarStereo())
-            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
             ax.add_feature(land_10m)
             ax.coastlines(resolution='10m')
             ax.set_extent((0, 6, 58.5, 62.5))
@@ -146,7 +146,7 @@ def task3a(separate=False, savefig=False):
             for index in range(0,6): #endret fra len(xArrayParticleSplit)
                 plt.figure("3a dag"+str(index*2))
                 ax = plt.axes(projection=ccrs.NorthPolarStereo())
-                land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+                land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
                 ax.add_feature(land_10m)
                 ax.coastlines(resolution='10m')
                 ax.set_extent((0, 6, 58.5, 62.5))
@@ -154,7 +154,7 @@ def task3a(separate=False, savefig=False):
                 ax.plot(lons, lats, colors[index], transform=ccrs.PlateCarree(), zorder=2)
                 print("lagrer figur")
                 figTime=time.time()
-                plt.savefig("Oppgave3pdfer\opg3adag"+str(index*2)+"plot.pdf")
+                plt.savefig("Oppgave3pdfer\opg3adag"+str(index*2)+"plot.png")
                 plt.close()
                 print("figur lagret")
         else:
@@ -170,7 +170,7 @@ def task3a(separate=False, savefig=False):
             yArray = trajectories[1]
             plt.figure()
             ax = plt.axes(projection=ccrs.NorthPolarStereo())
-            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
             ax.add_feature(land_10m)
             ax.coastlines(resolution='10m')
             ax.set_extent((0, 6, 58.5, 62.5))
@@ -189,7 +189,7 @@ def task3a(separate=False, savefig=False):
             day10 = mpatches.Patch(color='y', label='Day 10')
             ax.legend(handles=[day0,day2,day4,day6,day8,day10],bbox_to_anchor=(1.05,1), loc = 2, borderaxespad=0.)
             print("lagrer figur")
-            plt.savefig("Oppgave3pdfer\opg3atotalfigur3a.pdf")
+            plt.savefig("Oppgave3pdfer\opg3atotalfigur3a.png")
             plt.close()
             print("figur lagret")
             #endTime=time.time()
@@ -207,7 +207,7 @@ def task3a(separate=False, savefig=False):
             yArray = trajectories[1]
             plt.figure()
             ax = plt.axes(projection=ccrs.NorthPolarStereo())
-            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
             ax.add_feature(land_10m)
             ax.coastlines(resolution='10m')
             ax.set_extent((0, 6, 58.5, 62.5))
@@ -218,7 +218,7 @@ def task3a(separate=False, savefig=False):
             for index in range(0,6): #endret fra len(xArrayParticleSplit)
                 plt.figure("3a dag"+str(index*2))
                 ax = plt.axes(projection=ccrs.NorthPolarStereo())
-                land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+                land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
                 ax.add_feature(land_10m)
                 ax.coastlines(resolution='10m')
                 ax.set_extent((0, 6, 58.5, 62.5))
@@ -238,7 +238,7 @@ def task3a(separate=False, savefig=False):
             yArray = trajectories[1]
             plt.figure("3a samlet")
             ax = plt.axes(projection=ccrs.NorthPolarStereo())
-            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#000000')
+            land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
             ax.add_feature(land_10m)
             ax.coastlines(resolution='10m')
             ax.set_extent((0, 6, 58.5, 62.5))
@@ -270,10 +270,10 @@ def frequencyCounter(X,Nx,Ny,numberOfParticles):
 
 def task3b(savefig=False):
     if savefig:
-        Nx, Ny = 600, 300
-        x = -3010000 + 800 * np.arange(Nx)
+        Nx, Ny = 600, 300 #antall ruter i hhv x- og y-retning
+        x = -3010000 + 800 * np.arange(Nx) #deler inn i ruter
         y = -1300000 + 800 * np.arange(Ny)
-        x, y = np.meshgrid(x, y)
+        x, y = np.meshgrid(x, y) #setter opp i et rutenett
         ax = plt.axes(projection=ccrs.NorthPolarStereo())
         land_10m = cfeature.NaturalEarthFeature('physical', 'land', '10m', color='#dddddd')
         ax.add_feature(land_10m)
@@ -296,6 +296,7 @@ def task3b(savefig=False):
         colormap = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'PuRd'] #['autumn', 'cool', 'copper' , 'summer', 'winter', 'autumn']
         for day in range(0, 6):
             plt.figure("3b dag"+str(day*2))
+            plt.title("3b dag"+str(day*2))
             x = -3010000 + 800 * np.arange(Nx)
             y = -1300000 + 800 * np.arange(Ny)
             x, y = np.meshgrid(x, y)
@@ -312,7 +313,7 @@ def task3b(savefig=False):
             lons, lats = pyproj.transform(p1, p2, coordinates_X, coordinates_Y)
             ax.pcolormesh(lons, lats, concentration.T, transform=ccrs.PlateCarree(), zorder=2, cmap='gist_heat_r')
             print("lagrer figur")
-            plt.savefig("Oppgave3pdfer\oppgave3b"+str(2*day)+".pdf")
+            plt.savefig("Oppgave3pdfer\oppgave3b"+str(2*day)+".png")
             plt.close()
             print("figur lagret")
         #plt.show()
@@ -342,6 +343,7 @@ def task3b(savefig=False):
         colormap = ['Reds', 'Oranges', 'Greens', 'Blues', 'Purples', 'PuRd'] #['autumn', 'cool', 'copper' , 'summer', 'winter', 'autumn']
         for day in range(0, 6):
             plt.figure("3b dag"+str(day*2))
+            plt.title("3b dag"+str(day*2))
             x = -3010000 + 800 * np.arange(Nx)
             y = -1300000 + 800 * np.arange(Ny)
             x, y = np.meshgrid(x, y)

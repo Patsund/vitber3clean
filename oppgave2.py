@@ -112,7 +112,7 @@ def task2a(savefig=False):
             #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
         plt.title("Bane for ulike startdager")
         print("Tid brukt:", time.time() - clockStart)
-        print("Viser plott nå")
+        print("Plott lagret")
         plt.savefig("Oppgave2pdfer\oppgave2a.pdf")
     else:
         clockStart = time.time()
@@ -151,7 +151,7 @@ def task2b(savefig=False):
         yArray = trajectories[:, 1, :]
         plt.figure("2b")
         ax = plt.axes(projection=ccrs.NorthPolarStereo())
-        land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#00aa00')
+        land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
         ax.add_feature(land_10m)
         ax.coastlines(resolution='10m')
         p1 = pyproj.Proj(d.projection_stere.proj4)
@@ -178,7 +178,7 @@ def task2b(savefig=False):
         yArray = trajectories[:, 1, :]
         plt.figure("2b")
         ax = plt.axes(projection=ccrs.NorthPolarStereo())
-        land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#00aa00')
+        land_10m = cfeature.NaturalEarthFeature('physical','land','10m',color='#dddddd')
         ax.add_feature(land_10m)
         ax.coastlines(resolution='10m')
         p1 = pyproj.Proj(d.projection_stere.proj4)
