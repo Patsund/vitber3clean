@@ -62,6 +62,7 @@ if __name__ == "__main__":
 		elif switch == 4:
 			datapath = 'C:/Users/Patrik/Downloads/NorKyst-800m.nc'
 			if save == 1:
+				print("Viser plot i slutten av hver oppgave, for å fortsette programmet må vinduene lukkes")
 				o1.oppgave1()
 				o2.oppgave2(datapath)
 				o3.oppgave3(datapath)
